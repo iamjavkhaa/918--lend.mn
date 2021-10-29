@@ -1,0 +1,153 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    -webkit-text-size-adjust: 100%;
+    font: 13px/20px PTSansRegular,Arial,Helvetica,sans-serif;
+}
+.header{
+    width: 100%;
+    height: 80px;
+    background-color: #242424;
+    margin: 0 auto;
+    overflow: visible;
+    padding-left: 30px;
+    padding-right: 30px;
+    backface-visibility: hidden;
+    transition: background-color .25s ease-in-out;
+}
+img{
+    width: 78px;
+    height: 50px;
+    top: 10px;
+    vertical-align: top;
+}
+.menu{
+    float: right;
+    position: relative;
+    z-index: 200;
+    overflow: hidden;
+}
+ul{
+    list-style: none;
+    display: flex;
+}
+.header .menu ul li a{
+    line-height: 41px;
+    color: #fff;
+    font-family: Roboto,Verdana,Geneva,sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-decoration: none;
+    margin: 0 20px;
+}
+.space{
+    width: 100%;
+    height: 50px;
+}
+.main{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(./iphone-11Pro-2500x700.png);
+    padding-left: 30px;
+    padding-right: 30px;
+
+    background-color: #f4f6f8;
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding-top: 110px;
+    padding-right: 30px;
+    padding-bottom: 120px;
+    padding-left: 30px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-color: #eae9e9;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    background-size: cover;
+    position: relative;
+    font-size: 18px;
+}
+h1{
+    text-align: center; 
+    font-size: 37.72px; 
+    line-height: 45.264px;
+    color: #ffffff;
+}
+p{
+    text-align: center;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-family: Tahoma,Geneva,sans-serif,"ms sans serif",Geneva,sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+.span{
+    color: #bac5d0;
+    text-align: center;
+    line-height: 1.87;
+    font-family: Tahoma,Geneva,sans-serif,"ms sans serif",Geneva,sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+.fusion-aligncenter{
+    text-align: center;
+    padding: 11px 23px;
+    line-height: 16px;
+    font-size: 13px;
+    zoom: 1;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+}
+.fusion-button-text{
+    color: #03a9f4;
+    transition: all .2s;    
+    font-family: Roboto,Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+i{
+    color: white;
+}
+.mobile{
+    width: 100px;
+    height: 10vh;
+}
+#mobile{
+    display: none;
+}
+#mobile-header-menu{
+    display: none;
+}
+#mobile:checked ~ #mobile-header-menu{
+    display: block;
+}
+.fa-search{
+    color: white;
+}
+.fa-th-list{
+    color: red;
+}
+@media screen and (max-width: 1197px) {
+    .menu{
+        display: none;
+    }
+}
+.fa-th-list{
+    font-size: 40px;
+}
