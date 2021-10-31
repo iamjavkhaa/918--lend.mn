@@ -1,0 +1,260 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 20px;
+}
+.h1{
+    width: 100%;
+    overflow: hidden;
+    background-color: rgb(216, 197, 168);
+    border-radius: 30px;
+    margin-top: 30px;
+}
+h1{
+    text-align: center;
+    margin: 50px;
+}
+h1:hover{
+    animation: text 1s 1;
+}
+header{
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(114, 227, 231, 0.486);
+    border-radius: 30px;
+    margin-top: 20px;
+    .sainmuutop{
+        margin-bottom: 50px;
+    }
+    .sainmuu{
+        width: 100%;
+        height: 224.547px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 91px auto;
+        a{
+            text-decoration: none;
+            color: black;
+            text-shadow: 2px 2px white;
+            font-size: 40px;
+            font-weight: 4500;
+            position: absolute;
+            z-index: 10;
+            letter-spacing: 2px;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 100px;
+        }
+    }
+}
+@media screen and (min-width: 500px) {
+    header{
+        display: flex;
+        gap: 80px;
+        padding-right: 20px;
+        padding-left: 20px;
+        margin-top: 20px;
+    }
+}
+
+@keyframes text{
+    0%{
+        transform: scale(1.5, 0.5)
+    }
+    20%{
+        transform: scale(0.5, 1.5)
+    }
+    40%{
+        transform: scale(1.4, 0.6)
+    }
+    60%{
+        transform: scale(0.7, 1.3)
+    }
+    80%{
+        transform: scale(1.2, 0.8)
+    }
+    100%{
+        transform: scale(0.9, 1.1)
+    }
+}
+
+
+
+
+
+@keyframes easy{
+    0%{
+        transform: scale(1.5, 0.5)
+    }
+    20%{
+        transform: scale(0.5, 1.5)
+    }
+}
+
+.sainmuu:hover{
+    animation: text 1s 1;
+}
+
+main{
+    width: 100%;
+    height: 100%;
+    .zurag{
+        width: 100%;
+        height: 100%;
+        background-color: red;
+    }
+}
+
+
+.container{
+    width: 100%;
+    background-color:pink;
+    border-radius: 30px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-top: 20px;
+    .videoparent{
+        width: 80%;
+        margin: 30px auto 30px auto;
+        video{
+            width: 100%;
+        }
+    }
+}
+@media screen and (min-width: 500px) {
+    .container{
+        display: flex;
+        gap: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;   
+    }
+}
+
+
+.saintal-container{
+    width: 100%;
+    background-color: palevioletred;
+    border-radius: 30px;
+    margin-top: 30px;
+    h1{
+        color: orange;
+        font-size: 42px;
+    }
+    .saintal{
+        width: 100%;
+        .sain-img{
+            width: 100%;
+            padding: 20px;
+            img{
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
+@media screen and (min-width: 500px) {
+    .saintal-container{
+        padding: 100px;
+        background-color: rgba(250, 200, 61, 0.616);
+        margin-top: 20px;   
+        padding-top: 10px;
+    }
+    .saintal{
+        display: flex;
+        padding: 100px;
+        background-color: orangered;
+    }
+}
+@media screen and (min-width: 500px) and (max-width: 900px) {
+    .saintal{
+        padding: 0;
+    }
+}
+@media screen and (min-width: 500px) and (max-width: 800px) {
+    .saintal-container{
+        padding: 30px;
+    }
+}
+
+.rick-container{
+    width: 100%;
+    text-align: center;
+    .dar{
+        width: 50%;
+        margin: auto;
+        margin-top: 25px;
+        background-color: orange;
+        border-radius: 10px;
+        text-align: center;
+        p{
+            font-size: 20px;
+            text-shadow:rgb(253, 1, 1);
+            color: black;
+        }
+    }
+    .dar:hover{
+        cursor: pointer;
+    }
+    .downarrow{
+        width: 100%;
+        margin-top: 40px;
+        img{
+            width: 100%;
+        }
+    }
+    .rickparent{
+        width: 100%;
+        .rickvideo{
+            display: none;
+            width: 100%;
+        }
+    }
+    #check{
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+    .dar{
+        width: 50%;  
+        margin-right: auto;
+        margin-left: auto;  
+    }
+}
+
+
+
+#check:checked ~ * .rickvideo{
+    display: block;
+    position: absolute;
+    z-index: 999;
+    background-color: black;
+    left:0;
+}
+
+
+#check:checked ~ * .downarrow{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
