@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- <link rel="stylesheet" href="./cart.css"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+        }
+
+        html {
+            /* font-family: 'Roboto', sans-serif; */
+            font-family: 'Nunito', sans-serif;
+        }
+
+        ::placeholder {
+            color: var(--payment-green)
+        }
+
+        :root {
+            --purple: #4f3f68;
+            --hover-red: #f56c73;
+            --button-blue: #1895e6;
+            --cart-font-size: 14px;
+            --form-green: #008272;
+            --payment-green: #65cd54;
+        }
+
+        input {
+            outline: none;
+            padding: 4px 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+
+        header, .fixed-header {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            /* gap: 60%; */
+            background-color: var(--purple);
+            color: white;
+            /* padding-left: 100px; */
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .how-many {
+            position: absolute;
+            top: 110px;
+            color: black;
+            left: 20%;
+            font-size: 18px;
+        }
+
+        .total {
+            position: absolute;
+            top: 8px ;
+            color: black;
+            left: -130%;
+            font-size: var(--cart-font-size);
+        }
+
+
+        main {
+            margin: auto;
+            width: fit-content;
+            background-color: white;
+            box-shadow: 1px 1px 5px 2px rgba(128, 128, 128, 0.421);
+            margin-top: 100px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 80px;
+        }
+
+        .product {
+            width: 100%;
+            padding: 30px;
+            display: flex;
+            gap: 60px;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+            box-shadow: 1px 1px 5px 1px rgba(151, 151, 151, 0.204);
+        }
+
+        .product-img {
+            width: 19%;
+            height: 140px;
+        }
+
+        .product-img > img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /*  -------- product info start ---------- */
+
+        .product-info {
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            gap: 130px;
+        }
+
+        .product-info-in {
+            font-size: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .product-info-2 {
+            font-size: 15px;
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 19px;
+            justify-content: center;
+        }
+
+
+        .buy , .remove-from-cart {
+            width: 188px;
+            background-color: var(--hover-red);
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            transition: .2s linear;
+        }
+
+        .buy {
+            margin: 22px auto;
+            position: relative;
+        }
+
+        .buy:hover {
+            color: white;
+            background-color: var(--button-blue);
+            cursor: pointer;
+        }
+
+        .remove-from-cart:hover {
+            color: white;
+            background-color: red;
+            cursor: pointer;
+        }
+
+        /*  -------- product info end ---------- */
+
+        .colorRed {
+            color: red;
+        }
+
+        /*     fixed start        */
+
+        .fixed-parent {
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: yellow;
+            z-index: 2;
+        }
+
+        .fa-door-open {
+            position: absolute;
+            top: 10%;
+            font-size: large;
+        }
+
+
+        .fixed-address {
+            width: 442px;
+            height: fit-content;
+            background-color: var(--form-green);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .row {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .row-right > input {
+            width: 244px;
+        }
+
+        .urgeljluuleh {
+            margin: auto;
+            padding: 10px;
+            background-color: var(--button-blue);
+            border-radius: 8px;
+            transition: .2s linear;
+        }
+        .urgeljluuleh:hover {
+            cursor: pointer;
+            background-color: #185793;
+        }
+
+
+        /*         Payment styles are Up here -->      */
+
+        .fixed-payment {
+            width: 442px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 2rem;
+            border-radius: 8px;
+            color: var(--payment-green);
+        }
+
+        .payment-row-header {
+            text-align: center;
+            font-size: 35px !important;
+            font-weight: 700;
+        }
+
+        .payment-row {
+            display: flex;
+            flex-direction: column;
+            font-size: 23px;
+        }
+
+        .payment-row > input {
+            border: 1px solid var(--payment-green) ;
+        }
+
+        .has-two-children {
+            flex-direction: row;
+        }
+        .payment-row-left > input {
+            border: 1px solid var(--payment-green);    
+        }
+        .payment-row-right > input {
+            border: 1px solid var(--payment-green);    
+        }
+
+
+        .payment-end {
+            background-color: var(--payment-green);
+            text-align: center;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            transition: .2s linear;
+        }
+        .payment-end:hover {
+            cursor: pointer;
+            background-color: #408040;
+        }
+
+
+        /*         payment completed is down here */
+
+        .fixed-payment-completed {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+            background-color: white;
+            /* padding-top: 150px; */
+            padding-top: 9%;
+            gap: 2rem;
+        }
+
+        .fa-circle-check {
+            font-size: 233px;
+            color: #408040;
+        }
+
+        .order-success {
+            font-size: 23px;
+            font-weight: 700;
+        }
+
+        .return {
+            margin-top: 10px;
+            background-color: #185793;
+            width: 220px;
+            padding: 7px 0;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            transition: .2s linear;
+        }
+
+        .return:hover {
+            cursor: pointer;
+            background-color: #1895e6;
+        }
+
+
+        .songoson-too-shirheg {
+            font-weight: 700;
+        }
+
+
+        /*       cart.html iin responsive is down here          */
+
+
+        @media screen and (max-width: 450px ) {
+            .cart-empty-p {
+                font-size: 1rem !important ;
+            }
+            .cart-empty-img {
+                width: 200px !important ;
+                height: 100px !important ;
+            }
+        }
+
+
+        @media screen and (max-width: 950px ) {
+            .product-img {
+                width: unset;
+            }
+            .product {
+                flex-direction: column;
+            }
+            .product-info {
+                flex-direction: column;
+                gap: 60px;
+            }
+            .product-info-2 {
+                margin-left: auto;
+            }
+        }
+
+        @media screen and (min-width: 400px) and (max-width: 460px) {
+            .row-right > input {
+                width: 200px;
+            }
+        }
+
+        @media screen and (max-width: 399px) {
+            .row-right > input {
+                width: 186px;
+            }
+            .fixed-address {
+                padding: 10px;
+            }
+        }
+
+
+        @media screen and (max-width: 320px) {
+            .row-right > input {
+                width: 100px;
+            }
+        }
+
+
+
+
+        @media screen and (max-width: 480px) {
+
+            .fixed-payment {
+                width: 80%;
+            }
+
+            .has-two-children {
+                flex-direction: column;
+            }
+            .payment-row-right {
+                display: flex;
+                flex-direction: column;
+            }
+
+        }
+
+
+
+        @media screen and (max-width: 500px) {
+            .fa-door-open {
+                top: 20px;
+                left: 20px;
+            }
+        }
+
+
+        @media screen and (max-width: 380px ) {
+            .fixed-payment {
+                padding: 5px 1rem;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .fa-circle-check {
+                font-size: 170px;
+            }
+            .order-success {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="fixed-parent">
+         <i class="fa-solid fa-door-open"></i> 
+
+        <div class="fixed-payment-completed">
+            
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <div class="order-success">
+                Order Completed Successfully!
+            </div>
+
+            <div class="return">
+                Return
+            </div>
+
+
+        </div>
+
+
+
+    </div> -->
+
+    <header>
+        <a style="color: white" href="/..">Javkhlan Baigal</a>   
+
+        
+        <a style="color: white" href="/cart">
+            <h3>Миний сагс</h3>
+             <div class="how-many" > Таны сагс ( <span id="howManyInCart" >0</span> бүтээгдэхүүн ) </div>
+            <!--  <div class="total"> Нийт дүн:___ <span class="niit-dun" >0</span>  </div> -->
+        </a>
+
+        <!-- <p>Миний сагс</p> -->
+
+        <a style="color: white" href="/..">
+            <i class="fa-solid fa-house"></i>
+        </a>
+    </header>
+
+
+    <main>
+
+        {% for x in cart %}
+
+            <div class="product">
+                <div class="product-img">
+                    <img src="{{ x.img }}" alt="">
+                </div>
+    
+                <div class="product-info">
+                    <div class="product-info-in">
+                        <h3>{{ x.name }}</h3>
+                        <p style="font-size: 15px; " >{{ x.detail }}</p>  
+                        <p class="songoson-too-shirheg" >Сонгосон тоо ширхэг: {{ x.count }}</p>
+                        <p class="colorRed" >{{ x.displayPrice }}</p>
+                    </div>
+    
+                    <div class="product-info-2">
+                        <div class="remove-from-cart">
+                            <!--   cart aas baraag hasah link     -->
+                            <a href="/cart/delete/{{ x.number }}" style="color: white;" >
+                                Сагсаас хасах
+                            </a>
+                        </div>
+                        {% comment %}    x.number gedeg n products table dotor baigaa baraanuudiin id       {% endcomment %}
+                        <input style="display: none" type="text" value="{{ x.number }}">
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+
+        {% if cart %}
+            <div class="buy">
+                <a href="/cart/buy" style="color: white;" > Худалдан авах </a>
+                <div class="total"> Нийт дүн:___ <span class="niit-dun" >{{ total }}</span>  </div>
+            </div>
+        {% endif %}
+    </main>
+
+
+    <script src="./cart.js"></script>
+</body>
+</html>
