@@ -8,11 +8,14 @@ from .models import CartTwo, Products, Humuus, Lalruud, Details, CartTest, CartT
 # Create your views here.
 
 def index(request):
+    #    sags ruu baraa hiihed ajillaj baigaa function
+    howMany = 0
+    cartSync = CartTwo.objects.all()
     if request.method == "POST":
         pro_id = request.POST["pro_id"]
         count = request.POST["count"]
         # print(f"HERE THE BITCH IS:  {pro_id} ")
-        cartSync = CartTwo.objects.all()
+
         
         chosenProInfo = Products.objects.get(id=pro_id)
         print(f"LOOK AT THIS availableAmount  : {chosenProInfo.detail}")
@@ -46,33 +49,48 @@ def index(request):
             
             
             
-            
-            
             #   niit dung bodoog total variable dotor hiigeed yovuulj bna
-        cartSync = CartTwo.objects.all()
+        # cartSync = CartTwo.objects.all()
         total = 0
     
         if cartSync:
             for neg in cartSync:
+                howMany = howMany + 1
                 total = total + int(neg.price) * int(neg.count)
-            
-            
-            
-            
-        #   baraag songood sagsand nemeh deer darhad ajilna
-        return render(request, "cart/index.html", {
-            "pro_id": pro_id,
-            "cart": cartSync,
-            "total": total
-        })
+                
+            #   baraag songood sagsand nemeh deer darhad ajilna
+            return render(request, "cart/index.html", {
+                "pro_id": pro_id,
+                "cart": cartSync,
+                "total": total,
+                "howMany": howMany
+            })
+        else:
+            return render(request, "cart/emptyCart.html")
+
+
+
+
 
 
     #    hamgiin ehend huudas achaallahad ajilna
+    products = Products.objects.all()
+    cartPros = CartTwo.objects.all()
+    for x in cartSync:
+        howMany = howMany + 1
+        
     return render(request, "home/index.html", {
-        "products": Products.objects.all(),
-        "humuus": Humuus.objects.all()
+        "products": products,
+        "humuus": Humuus.objects.all(),
+        "howMany": howMany,
+        "cartPros": cartPros
     })
     
+    
+    
+    
+    
+    # uzeh deer darhad ajillaj baigaa function
 def pro(request, pro_id):
     product = Products.objects.get(id=pro_id)
     return render(request, "home/product.html", {

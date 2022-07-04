@@ -447,10 +447,7 @@
         
         <a style="color: white" href="/cart">
             <h3>Миний сагс</h3>
-             <div class="how-many" > Таны сагс ( 
-                <span id="howManyInCart" >{{ howMany }}</span> 
-                бүтээгдэхүүн ) 
-            </div>
+             <div class="how-many" > Таны сагс ( <span id="howManyInCart" >0</span> бүтээгдэхүүн ) </div>
             <!--  <div class="total"> Нийт дүн:___ <span class="niit-dun" >0</span>  </div> -->
         </a>
 
@@ -462,45 +459,11 @@
     </header>
 
 
-    <main>
+    <main style="box-shadow: none;" >
 
-        {% for x in cart %}
+        <img class="cart-empty-img" style="width: 400px; height: 200px; margin-top: 169px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpo65oxvrHRHp7nt-NIqHStL4G3nQ1qYPbUP81__WkpluiYwX3I3W_jmlJN6Uv4WYpYDw&usqp=CAU">
+        <p class="cart-empty-p" style="text-align: center; font-size: 30px; margin-top: 40px; " > Таны сагс хоосон байна </p>
 
-            <div class="product">
-                <div class="product-img">
-                    <img src="{{ x.img }}" alt="">
-                </div>
-    
-                <div class="product-info">
-                    <div class="product-info-in">
-                        <h3>{{ x.name }}</h3>
-                        <p style="font-size: 15px; " >{{ x.detail }}</p>  
-                        <p class="songoson-too-shirheg" >Сонгосон тоо ширхэг: {{ x.count }}</p>
-                        <p class="colorRed" >{{ x.displayPrice }}</p>
-                    </div>
-    
-                    <div class="product-info-2">
-                        <div class="remove-from-cart">
-                            <!--   cart aas baraag hasah link     -->
-                            <a href="/cart/delete/{{ x.number }}" style="color: white;" >
-                                Сагсаас хасах
-                            </a>
-                        </div>
-                        {% comment %}    x.number gedeg n products table dotor baigaa baraanuudiin id       {% endcomment %}
-                        <input style="display: none" type="text" value="{{ x.number }}">
-                    </div>
-                </div>
-            </div>
-
-        {% endfor %}
-
-
-        {% if cart %}
-            <div class="buy">
-                <a href="/cart/buy" style="color: white;" > Худалдан авах </a>
-                <div class="total"> Нийт дүн:___ <span class="niit-dun" >{{ total }}</span>  </div>
-            </div>
-        {% endif %}
     </main>
 
 
@@ -511,14 +474,6 @@
 
 
 
-
-
-    <script type="text/python" id="script4">
-        from browser import document, console, alert
-
-        console.log('psdaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-        alert('psda')
-    </script>
 
 </body>
 </html>

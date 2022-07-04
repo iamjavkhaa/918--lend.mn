@@ -416,29 +416,34 @@
         <a style="color: white" href="/">Javkhlan Baigal</a>  
 
         <a style="color: white" href="/cart">
-            <i onmouseover="showCart()" onmouseleave="hideCart()" class="fa-solid fa-cart-arrow-down">
-            <div class="displayCartLength">0</div>
+            <i id="hoverCart"  onmouseover="showCart()" onmouseleave="hideCart()" class="fa-solid fa-cart-arrow-down">
+            <div class="displayCartLength">{{ howMany }}</div>
             <!-- <i class="fa-solid fa-cart-arrow-down"> -->
 
 
-                <div class="cart">
-                    <!-- <div class="singleProduct"> 
+                <!-- hover hiiheer garch cartand baigaa baraanud garch irdeg heseg -->
+                <div id="popCart"  class="cart">
+                    {% for cart in cartPros  %}
+
+                    <div class="singleProduct"> 
                         <div class="singleProductLeft">
-                            <img src="https://cdn3.shoppy.mn/spree/images/1307725/product/open-uri20220415-1859205-ouc9lb." alt="">
+                            <img src="{{ cart.img }}" alt="">
                         </div>
     
                         <div class="singleProductMain">
-                            <h6>sun glass</h6>
+                            <h6>{{ cart.name }}</h6>
                             <div class="singleProductMainPCont">
-                                <p>99,000 ₮</p>
-                                <p>тоо ширхэг:  1</p>
+                                <p>{{ cart.displayPrice }}</p>
+                                <p>тоо ширхэг:  {{ cart.count }}</p>
                             </div>
                         </div>
     
                         <div class="singleProductLeft">
                             <i class="fa-solid fa-x"></i>
                         </div>
-                    </div> -->
+                    </div>
+
+                    {% endfor  %}
                 </div>
             
             </i>
@@ -448,7 +453,7 @@
 
 
     <div class="fixed-parent">
-        <!-- <div class="fixed-header">
+        <div class="fixed-header">
             Shoppy.mn
             <i onmouseover="showFixedCart()" onmouseleave="hideFixedCart()" class="fa-solid fa-cart-arrow-down">
                 <div id="fixed-cart" class="cart">
@@ -480,14 +485,14 @@
                     <div onclick="addCount()" class="plus">+</div>
                 </div>
             </div>
-        </div> -->
+        </div> 
     </div>
 
 
 
 
     <div class="main-parent">
-        <div class="main">
+        <div id="mainId" class="main">
 
             {% for pro in products %}
                 <div class="grid-item">
@@ -677,9 +682,19 @@
 
 
 
-    <!-- ALERT & DOM insert -->
+    <!-- uzeh function is here -->
     <script type="text/python" id="script0">
         from browser import document, console, alert
+        hoverCart = document["hoverCart"]
+        popCart = document["popCart"] 
+
+        def showCart(e):
+            popCart.style.display = "flex"
+
+        def hideCart(e):
+            if e.target == hoverCart:
+                popCart.style.display = "none"    
+
 
         def show(e):
             if e.target.id == "uzeh" and int(e.target.previousElementSibling.previousElementSibling.previousElementSibling.lastElementChild.innerText) > 0:
@@ -689,6 +704,31 @@
 
 
         document.bind('click', show)
+        hoverCart.bind('mouseover', showCart)
+        hoverCart.bind('mouseleave', hideCart)
+    </script>
+
+
+
+
+
+
+
+
+    <!--  'baraa duussan urd "Бараа дууссан" gesen bichig gargaj bui js'  -->
+    <script type="text/javascript" id="script1">
+        aguulah = [...document.getElementsByClassName('aguulah-span')]
+        aguulah.forEach((a)=>{
+            if (a.innerText < 1) {
+                a.innerText = "Бараа дууссан"
+                a.style.fontSize = "large"
+                a.parentElement.style.color = "red"
+            }
+        })
+
+
+
+
     </script>
 
 

@@ -10,20 +10,24 @@ from home.models import CartTwo, Products
 def index(request):
     cartSync = CartTwo.objects.all()
     total = 0
+    howMany = 0
     
-    
-        #   niit dung bodoog total variable dotor hiigeed yovuulj bna (home/views.py index function dotor 
+        #   niit dung bodood total variable dotor hiigeed yovuulj bna (home/views.py index function dotor 
         #   doorh uildel bas baigaa)
     if cartSync:
         for neg in cartSync:
+            howMany = howMany + 1
             total = total + int(neg.price) * int(neg.count)
-            
+        return render(request, "cart/index.html", {
+            "cart": cartSync,
+            "total": total,
+            "howMany": howMany
+        })
+    else:
+        return render(request, "cart/emptyCart.html")
             
     
-    return render(request, "cart/index.html", {
-        "cart": cartSync,
-        "total": total
-    })
+
     
 
 
